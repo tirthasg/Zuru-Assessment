@@ -1,6 +1,6 @@
 # Importing the relevant functions to be tested, along with pytest
 # Here, we're only trying to test get_result()
-from driver import get_result
+from driver import beam_verification
 from moment import Moment
 import pytest
 
@@ -32,7 +32,7 @@ def test_code():
     data, expected_result = input_test_cases()
 
     # Compute the actual result for this test case
-    result = get_result(data)
+    result = beam_verification(data)
     
     # Testing for equality of two floating-point numbers is considered a bad practice
     # Instead, we check whether their absolute difference lies within a tolerance

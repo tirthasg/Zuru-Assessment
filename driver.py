@@ -33,7 +33,7 @@ def take_input():
     return data
 
 # Compute the result
-def get_result(data):
+def beam_verification(data):
     # Assigning references to inputs of interest
     # Compressive strength of concrete
     f_c = data[0]
@@ -147,7 +147,7 @@ def main():
     data = take_input()
 
     # Computing the result: Safety/Utilization factor
-    utilityRatioForFlexure = get_result(data)
+    utilityRatioForFlexure = beam_verification(data)
 
     # Displaying the result upto 4 digits after decimal point
     print("{:.4f}".format(utilityRatioForFlexure))

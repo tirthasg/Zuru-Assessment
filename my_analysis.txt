@@ -1,0 +1,21 @@
+Description of files:
+1. driver.py: This file contains the driver code which implements 3 functions, namely:
+
+(a) main(): For flow of control.
+(b) take_input(): To take input from the console. 
+(c) validate_data(): To validate that the input is correct/legal.
+(d) beam_verification(): To implement the beam verification, which is the main of interest to us.
+
+2. moment.py: A module needs to be included in the driver.py script, and is used to create objects of the class Moment, and call the moment_capacity() method on it with appropriate parameters.
+
+3. test_my_script.py: It's a python script to run test on the beam_verification() using PyTest. In this script, we expect the input test case, along with the correct/expected result to be available as a text file.
+
+4. test_cases.txt: Contains 1 mandatory test case as given in the instruction manual.
+
+Note:
+1. Only the relevant parameters are used to compute the Safety/Utilization factor. Other parameters have been appropriately ignored.
+
+2. The entire code has been documented with appropriate comments, and names of the variables/references have been chosen directly from the problem statement to prevent any confusion.
+
+Answer to Bonus Question:
+Logical errors observed in the problem statement was that the different physical quantities in the program have units which aren't directled compatible to be used in the equations of interest. And, they have been appropriately converted to compatible units while computing the results.
