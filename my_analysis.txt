@@ -16,27 +16,27 @@ Note: test_my_script.py expects input from text file.
 
 4. test_cases.txt: Contains 1 mandatory test case to complete the assessment.
 
-Note:
-1. Only the relevant physical quantities are used to compute the Safety/Utilization factor. Others have been ignored.
+5. Note:
+(a) Only the relevant physical quantities are used to compute the Safety/Utilization factor. Others have been ignored.
 
-2. The entire code has been documented with comments, and names of the variables/references have been chosen directly from the sm files to prevent any confusion.
+(b) The entire code has been documented with comments, and names of the variables/references have been chosen directly from the sm files to prevent any confusion.
 
-Answer to Bonus Question:
+6. Answer to Bonus Question:
 I noticed the following issues in sm files:
 
-1. developer_test file: Unit-mismatch, or in other words, the different physical quantities in the program have units which aren't directly compatible to be used in the equations of interest. And, they have been appropriately converted to appropriate units before/during the computation of the results.
+(a) developer_test file: Unit-mismatch, or in other words, the different physical quantities in the program have units which aren't directly compatible to be used in the equations of interest. And, they have been appropriately converted to appropriate units before/during the computation of the results.
 
-2. moment_capacity file: An equation in this file was not completely reduced to the simplest possible form. They have been simplified, and then implemented.
+(b) moment_capacity file: An equation in this file was not completely reduced to the simplest possible form. They have been simplified, and then implemented.
 Along with that, some of the values expected by the moment_capacity file were in-correct, thereby yielding in-correct values of M_cap_Sagg, and M_cap_Hogg. The final result has been modified in the test_cases.txt file to ensure proper testing.
 
 Instances of the above error are the following:
 
 No. Qty: Expected val in moment_capacity.sm, Actual val in developer_test.sm
-1. f'c: 45 MPa, 40 MPa
-2. fy: 675 MPa, 500 MPa
-3. As_top_prov: 525 mm^2, 1000 mm^2
-4. beta1 (Not required for further computation): 0.73, 0.77
-5. a_fromTop: 160.8234 mm, 134.0196 mm
-6. a_fromBott: 30.8824 mm, 49.0196 mm
-7. a_maxfromTop: 113.3647 mm, 138.6 mm
-8. a_maxFromBott: 113.3647 mm, 138.6 mm
+(i) f'c: 45 MPa, 40 MPa
+(ii) fy: 675 MPa, 500 MPa
+(iii) As_top_prov: 525 mm^2, 1000 mm^2
+(iv) beta1 (Not required for further computation): 0.73, 0.77
+(v) a_fromTop: 160.8234 mm, 134.0196 mm
+(vi) a_fromBott: 30.8824 mm, 49.0196 mm
+(vii) a_maxfromTop: 113.3647 mm, 138.6 mm
+(viii) a_maxFromBott: 113.3647 mm, 138.6 mm
