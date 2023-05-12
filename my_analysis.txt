@@ -1,14 +1,18 @@
 Description of files:
-1. driver.py: This file contains the driver code which implements 3 functions, namely:
+1. driver.py: Loosely speaking, this is the implementation of the developer_test.sm file, along with other uitlity functions. It contains the following 3 functions:
 
-(a) main(): To control flow of execution.
-(b) take_input(): To take input from the console. 
-(c) validate_data(): To validate that the input is correct/legal.
-(d) beam_verification(): To implement the beam verification, which is the main function of interest to us.
+(a) main(): Controls flow of execution.
+(b) take_input(): Takes input from the console. 
+(c) validate_data(): Validates that the input is correct/legal.
+(d) beam_verification(): Implements, and evaluates beam verification, which is the main function of interest to us.
+
+Note: driver.py expects input from console.
 
 2. moment.py: This module needs to be included in the driver.py script, and is used to create objects of the class Moment, and thereafter call the moment_capacity() method on it with appropriate parameters.
 
 3. test_my_script.py: It's a python script to run test on the beam_verification() using PyTest. In this script, we expect the input test case, along with the correct/expected result, to be available to us inside a text file (test_cases.txt).
+
+Note: test_my_script.py expects input from text file.
 
 4. test_cases.txt: Contains 1 mandatory test case to complete the assessment.
 
@@ -22,4 +26,17 @@ I noticed the following issues in sm files:
 
 1. developer_test file: Unit-mismatch, or in other words, the different physical quantities in the program have units which aren't directly compatible to be used in the equations of interest. And, they have been appropriately converted to appropriate units before/during the computation of the results.
 
-2. moment_capacity file: An equation was not completely reduced to the simplest possible form. They have been simplified, and then implemented.
+2. moment_capacity file: An equation in this file was not completely reduced to the simplest possible form. They have been simplified, and then implemented.
+Along with that, some of the values expected by the moment_capacity file were in-correct, thereby yielding in-correct values of M_cap_Sagg, and M_cap_Hogg. The final result has been modified in the test_cases.txt file to ensure proper testing.
+
+Instances of the above error are the following:
+
+No. Qty: Expected val in moment_capacity.sm, Actual val in developer_test.sm
+1. f'c: 45 MPa, 40 MPa
+2. fy: 675 MPa, 500 MPa
+3. As_top_prov: 525 mm^2, 1000 mm^2
+4. beta1 (Not required for further computation): 0.73, 0.77
+5. a_fromTop: 160.8234 mm, 134.0196 mm
+6. a_fromBott: 30.8824 mm, 49.0196 mm
+7. a_maxfromTop: 113.3647 mm, 138.6 mm
+8. a_maxFromBott: 113.3647 mm, 138.6 mm

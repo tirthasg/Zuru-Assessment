@@ -150,20 +150,49 @@ def beam_verification(data):
     # Unit: N-m
     M_design = abs(M) * 1000
 
-    # paramters = [f_c, fy, bw, covTop, covBott, dFromTop, dFromBott, As_bott_prov, As_top_prov, alpha1, beta1, a_FromTop, a_FromBott, a_max_fromTop, a_max_fromBott]
-    # parameters_for_moment = dict.fromkeys(paramters)
-    # print(parameters_for_moment)
+    # Creating a dictionary of parameters: key is parameter name, value is it's value
+    parameters_dict = {
+        'f\'c': f_c,
+        'fy': fy,
+
+        'bw': bw,
+        'covTop': covTop,
+        'covBott': covBott,
+        'dFromTop': dFromTop,
+        'dFromBott': dFromBott,
+        'As_bott_prov': As_bott_prov,
+        'As_top_prov': As_top_prov,
+
+        'alpha1': alpha1,
+        'beta1': beta1,
+        'a_FromTop': a_FromTop,
+        'a_FromBott': a_FromBott,
+        'a_max_fromTop': a_max_fromTop,
+        'a_max_fromBott': a_max_fromBott
+    }
+    # Display parameters computed so far
+    print(f'Parameters in driver_test.sm file: {parameters_dict}')
+
+    # _NOTE: ERROR IN THE EXPECTED VALUES OF THE FOLLOWING QUANTITIES:
+    # No. Qty: Expected val in moment_capacity.sm, Actual val in developer_test.sm
+    # 1. f'c: 45 MPa, 40 MPa
+    # 2. fy: 675 MPa, 500 MPa
+    # 3. As_top_prov: 525 mm^2, 1000 mm^2
+    # 4. beta1 (Not required for further computation): 0.73, 0.77
+    # 5. a_fromTop: 160.8234 mm, 134.0196 mm
+    # 6. a_fromBott: 30.8824 mm, 49.0196 mm
+    # 7. a_maxfromTop: 113.3647 mm, 138.6 mm
+    # 8. a_maxFromBott: 113.3647 mm, 138.6 mm
+ 
+    # The final value of the result int the testing scipt has been updated with the correct value to ensure correct testing of the Python code. 
 
     # Initializing class attributes
     Moment.init_class_attributes(f_c, fy, 
-                                bw, 
-                                covTop, covBott, As_top_prov, As_bott_prov, 
-                                dFromTop, dFromBott)
+                                 bw, 
+                                 covTop, covBott, As_top_prov, As_bott_prov, 
+                                 dFromTop, dFromBott)
 
     # Creating an instance/object of the custom-class Moment
-    # obj = Moment(alpha1, 
-    #             dFromTop, a_FromBott, 
-    #             a_max_fromTop, a_max_fromBott)
     obj = Moment(alpha1, 
                  a_FromTop, a_FromBott, 
                  a_max_fromTop, a_max_fromBott)
@@ -172,16 +201,18 @@ def beam_verification(data):
     # Unit: N-mm
     M_cap_Sagg, M_cap_Hogg = obj.moment_capacity()
     # Displaying the two moment capacities for Sagging & Hogging movement
-    print('{:.4e}'.format(M_cap_Sagg))
-    print('{:.4e}'.format(M_cap_Hogg))
+    print(f'M_cap_Sagg: {M_cap_Sagg:.4e}')
+    print(f'M_cap_Hogg: {M_cap_Hogg:.4e}')
 
     # Computing the Moment capacity
     # Unit: N-mm
     M_cap = M_cap_Hogg * phi if M < 0 else M_cap_Sagg * phi
     # Displaying the Moment capacity
-    print('{:.4e}'.format(M_cap))
+    print(f'M_cap: {M_cap:.4e}')
 
     # Computing the result: Safety/Utilization factor
+    # Factor of 1000 to account for the mismatch in units
+    # M_design has unit N-m, while M_cap has unit N-mm
     # Unit-less
     utilityRatioForFlexure = (M_design / M_cap) * 1000
 
@@ -199,7 +230,7 @@ def main():
     utilityRatioForFlexure = beam_verification(data)
 
     # Displaying the result upto 4 digits after decimal point
-    print("{:.4f}".format(utilityRatioForFlexure))
+    print(f'utilityRatioForFlexure: {utilityRatioForFlexure:.4f}')
 
 # Control flow of execution
 if __name__ == '__main__':
