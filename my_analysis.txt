@@ -6,7 +6,7 @@ Description of files:
 (c) validate_data(): Validates that the input is correct/legal.
 (d) beam_verification(): Implements, and evaluates beam verification, which is the main function of interest to us.
 
-Note: driver.py expects input from console.
+Note: driver.py expects input from console. Input commented in the code.
 
 2. moment.py: This module needs to be included in the driver.py script, and is used to create objects of the class Moment, and thereafter call the moment_capacity() method on it with appropriate parameters.
 
